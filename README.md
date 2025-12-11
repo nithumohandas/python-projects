@@ -1,1 +1,1 @@
-# python_projects
+# core python-projects
