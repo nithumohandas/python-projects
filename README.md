@@ -1,3 +1,3 @@
 # core python-projects
 
-![img.png](img.png)
+![Linked List BigO comparison with List](LinkedList.png)
