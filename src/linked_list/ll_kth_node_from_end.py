@@ -1,8 +1,6 @@
 from typing import Any
 
-from linked_list import LinkedList, Node
-
-from src.linked_list.linked_list import Node
+from linked_list import LinkedList
 
 
 def kth_node_from_end(test_ll: LinkedList, k: int) -> Any | None:

@@ -12,10 +12,12 @@ class LinkedList:
 
     def print_list(self):
         print(">>>>>>>>>>>>")
+        ll_str = ""
         temp = self.head
         while temp is not None:
-            print(temp.data)
+            ll_str = ll_str + str(temp.data)
             temp = temp.next
+        print(ll_str)
 
     def append(self, data):
         new_node = Node(data)
