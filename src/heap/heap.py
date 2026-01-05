@@ -59,6 +59,16 @@ class MaxHeap:
         return max_value
 
 
+def stream_max(nums):
+    max_heap = MaxHeap()
+    max_stream = []
+
+    for num in nums:
+        max_heap.insert(num)
+        max_stream.append(max_heap.heap[0])
+
+    return max_stream
+
 my_heap = MaxHeap()
 my_heap.insert(99)
 my_heap.insert(80)
@@ -74,3 +84,46 @@ print(my_heap.heap)
 my_heap.insert(75)
 
 print(my_heap.heap)
+
+
+test_cases = [
+    ([], []),
+    ([1], [1]),
+    ([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]),
+    ([1, 2, 2, 1, 3, 3, 3, 2, 2], [1, 2, 2, 2, 3, 3, 3, 3, 3]),
+    ([-1, -2, -3, -4, -5], [-1, -1, -1, -1, -1])
+]
+
+for i, (nums, expected) in enumerate(test_cases):
+    result = stream_max(nums)
+    print(f'\nTest {i+1}')
+    print(f'Input: {nums}')
+    print(f'Expected Output: {expected}')
+    print(f'Actual Output: {result}')
+    if result == expected:
+        print('Status: Passed')
+    else:
+        print('Status: Failed')
+
+def find_kth_smallest(nums, k):
+    my_heap = MaxHeap()
+    for num in nums:
+        if len(my_heap.heap) < k:
+            my_heap.insert(num)
+        elif num < my_heap.heap[0]:
+            my_heap.remove()
+            my_heap.insert(num)
+    return my_heap.heap[0]
+
+nums = [[3,2,1,5,6,4], [6,5,4,3,2,1], [1,2,3,4,5,6], [3,2,3,1,2,4,5,5,6]]
+ks = [2, 3, 4, 7]
+expected_outputs = [2, 3, 4, 5]
+
+for i in range(len(nums)):
+    print(f'Test case {i+1}...')
+    print(f'Input: {nums[i]} with k = {ks[i]}')
+    result = find_kth_smallest(nums[i], ks[i])
+    print(f'Output: {result}')
+    print(f'Expected output: {expected_outputs[i]}')
+    print(f'Test passed: {result == expected_outputs[i]}')
+    print('---------------------------------------')
