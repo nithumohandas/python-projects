@@ -40,9 +40,32 @@ class BinarySearchTree:
 
         return False
 
+    def BFS(self):
+        queue = [self.root]
+        bst_list = []
+        while len(queue) > 0:
+            current = queue.pop(0)
+            bst_list.append(current.value)
+            if current.left is not None:
+                queue.append(current.left)
+            if current.right is not None:
+                queue.append(current.right)
+        return bst_list
+
+
 bst = BinarySearchTree(5)
 print(bst.insert(5))
 print(bst.insert(10))
 print(bst.insert(1))
 print(bst.search(10))
 print(bst.search(6))
+
+my_tree = BinarySearchTree(47)
+my_tree.insert(21)
+my_tree.insert(76)
+my_tree.insert(18)
+my_tree.insert(27)
+my_tree.insert(52)
+my_tree.insert(82)
+
+print(my_tree.BFS())

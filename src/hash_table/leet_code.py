@@ -1,6 +1,27 @@
 from typing import OrderedDict
 
 
+def check_anagram(str1, str2):
+    str1_dict = {}
+    str2_dict = {}
+    for char in str1:
+        if char not in str1_dict:
+            str1_dict[char] = 1
+        else:
+            str1_dict[char] += 1
+    for char in str2:
+        if char not in str2_dict:
+            str2_dict[char] = 1
+        else:
+            str2_dict[char] += 1
+    print(str1_dict)
+    print(str2_dict)
+    if str2_dict == str1_dict:
+        return True
+    return False
+
+print(check_anagram('anagram', 'nagaram'))
+
 def find_duplicates(arr):
     my_dict = {}
     dupes = set()

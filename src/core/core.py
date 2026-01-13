@@ -1,4 +1,6 @@
 # Create from a list (duplicates are removed)
+from time import sleep
+
 my_list = [1, 2, 3, 2, 4]
 frozen_set = frozenset(my_list)
 print(frozen_set)
@@ -95,3 +97,10 @@ except* TypeError as e:
     print(f"Handling TypeError: {e}")
 except* ValueError as e:
     print(f"Handling ValueError: {e}")
+
+async def run_coroutine():
+    sleep(10)
+    print("in coroutine")
+
+
+asyncio.run(run_coroutine())
