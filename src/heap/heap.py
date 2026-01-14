@@ -127,3 +127,14 @@ for i in range(len(nums)):
     print(f'Expected output: {expected_outputs[i]}')
     print(f'Test passed: {result == expected_outputs[i]}')
     print('---------------------------------------')
+
+nums = [0,0,1, 1, 1, 2, 2, 3]
+k = 2
+from collections import Counter
+import heapq
+
+count_dict = Counter(nums)
+print(count_dict)
+k_largest = heapq.nlargest(k, count_dict, key=count_dict.get)
+print(k_largest)
+
