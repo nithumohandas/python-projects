@@ -5,6 +5,10 @@ class Node:
         self.right = None
 
 class BinarySearchTree:
+    """
+    Binary Search Tree always has the left nodes < right nodes
+    """
+
     def __init__(self, value):
         new_node = Node(value)
         self.root = new_node
