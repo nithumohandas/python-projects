@@ -1,4 +1,5 @@
 # Create from a list (duplicates are removed)
+import functools
 from time import sleep
 
 my_list = [1, 2, 3, 2, 4]
@@ -99,10 +100,47 @@ except* ValueError as e:
     print(f"Handling ValueError: {e}")
 
 async def run_coroutine():
-    sleep(10)
+    sleep(1)
     print("in coroutine")
 
 
 asyncio.run(run_coroutine())
 
+def a_decorator_passing_arbitrary_arguments(function_to_decorate):
+    def a_wrapper_accepting_arbitrary_arguments(*args,**kwargs):
+        print('The positional arguments are', args)
+        print('The keyword arguments are', kwargs)
+        function_to_decorate(*args)
+    return a_wrapper_accepting_arbitrary_arguments
 
+@a_decorator_passing_arbitrary_arguments
+def function_with_no_argument():
+    print("No arguments here.")
+
+def decorator(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        print("in decorator")
+        result = func(*args, **kwargs)
+        print("after decorator")
+        return result
+    return wrapper
+
+@decorator
+def my_method(name):
+    print(f"in {name} my_method")
+
+my_method('nithu')
+
+def decorator_with_arguments(function):
+    def wrapper_accepting_arguments(arg1, arg2):
+        print("My arguments are: {0}, {1}".format(arg1,arg2))
+        function(arg1, arg2)
+    return wrapper_accepting_arguments
+
+
+@decorator_with_arguments
+def cities(city_one, city_two):
+    print("Cities I love are {0} and {1}".format(city_one, city_two))
+
+cities("Nairobi", "Accra")
