@@ -102,6 +102,21 @@ class LinkedList:
                 removed_index.next = None
             return removed_index
 
+    def reverse(self):
+        previous = None
+        old_head = self.head
+        current = self.head
+
+        while current:
+            temp = current.next
+            current.next = previous
+
+            previous = current
+            current = temp
+
+        self.head = previous
+        self.tail = old_head
+
 # new_ll = LinkedList(11)
 # new_ll.print_list()
 # new_ll.append(22)
