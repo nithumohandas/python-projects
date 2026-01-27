@@ -32,19 +32,18 @@ class BinarySearchTree:
                 else:
                     temp = temp.right
 
-    def search(self, value):
-        temp = self.root
-        while(temp):
-            if value == temp.value:
-                return True
-            elif value < temp.value:
-                temp = temp.left
-            else:
-                temp = temp.right
+    def invert_bt(self, node: Node):
+        root = node
+        if root is None:
+            return None
+        left_node = root.left
+        right_node = root.right
+        root.left, root.right = right_node, left_node
+        self.invert_bt(left_node)
+        self.invert_bt(right_node)
+        return self.root
 
-        return False
-
-    def BFS(self):
+    def print_tree(self):
         queue = [self.root]
         bst_list = []
         while len(queue) > 0:
@@ -55,22 +54,15 @@ class BinarySearchTree:
             if current.right is not None:
                 queue.append(current.right)
         print(bst_list)
-        return bst_list
 
+my_tree = BinarySearchTree(1)
+my_tree.insert(2)
+my_tree.insert(3)
+my_tree.insert(4)
+my_tree.insert(5)
+my_tree.insert(6)
+my_tree.insert(7)
+my_tree.print_tree()
+invrt_root = my_tree.invert_bt(my_tree.root)
+my_tree.print_tree()
 
-bst = BinarySearchTree(5)
-print(bst.insert(5))
-print(bst.insert(10))
-print(bst.insert(1))
-print(bst.search(10))
-print(bst.search(6))
-
-my_tree = BinarySearchTree(47)
-my_tree.insert(21)
-my_tree.insert(76)
-my_tree.insert(18)
-my_tree.insert(27)
-my_tree.insert(52)
-my_tree.insert(82)
-
-print(my_tree.BFS())
