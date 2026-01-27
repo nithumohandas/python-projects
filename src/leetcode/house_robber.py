@@ -11,3 +11,14 @@ def find_max_alt(nums):
     return max_returns[-1]
 
 print(find_max_alt(nums))
+
+def find_max_robber_2(nums):
+    max_skip_first = find_max_alt(nums[1:])
+    max_skip_last = find_max_alt(nums[:-1])
+    return max(max_skip_first, max_skip_last)
+
+nums = [1,2,3,1]
+print(find_max_robber_2(nums))
+
+nums = [2,3,2]
+print(find_max_robber_2(nums))
